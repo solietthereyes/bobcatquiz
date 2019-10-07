@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bobcat Quiz</title>
+<style>
+body {
+background-color: goldenrod;
+font-family: Helvetica;
+}
+
+#main {
+width: 80%;
+max-width: 950px;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 233px;
+background: beige;
+background-image: url("white.jpeg");
+color: white;
+}
+  
+label {
+display: block;
+}
+
+input {
+width: 30px;
+margin-left: 20px;
+}
+
+h2 {
+clear: both;
+padding-top: 20px;
+}
+
+button {
+width: 100px;
+margin-top: 20px;
+}
+</style>
+
+
+</head>
+
+<body>
+<div id="main"><!-- open main div -->
+<div id="header"><!-- open header div -->
+<h1></h1>
+</div><!-- close header div -->
+
+<h1>Are you a true bobcat?</h1>
+<form id="form1">
+
+<h2>What was Texas State University's original name in 1969? </h2>
+<label for="var_string"><input type="radio" name="variable" value="0" id="var_string" />University of San Marcos Texas</label>
+<label for="var_join"><input type="radio" name="variable" value="20" id="var_join" />Southwest Texas State</label>
+<label for="var_info"><input type="radio" name="variable" value="0" id="var_info" />The Square University</label>
+<label for="var_condition"><input type="radio" name="variable" value="0" id="var_condition"/>Bobcat College</label>
+
+<h2>Texas State's school colors are maroon and gold, which flower inspired these colors?</h2>
+<label for="sub_string"><input type="radio" name="sub" value="20" id="sub_string"/>Gaillardia</label>
+<label for="sub_join"><input type="radio" name="sub" value="0" id="sub_join"/>Sunflower</label>
+<label for="sub_info"><input type="radio" name="sub" value="0" id="sub_info" />Bergenia</label>
+<label for="sub_condition"><input type="radio" name="sub" value="0" id="sub_condition" />Nymphea</label>
+
+<h2>What is the best major at Texas State?</h2>
+<label for="cat_string"><input type="radio" name="con" value="0" id="cat_string" />Engineering</label>
+<label for="cat_join"><input type="radio" name="con" value="0" id="cat_join" />Exercise and Sports Science</label>
+<label for="cat_info"><input type="radio" name="con" value="0" id="cat_info" />Business</label>
+<label for="cat_condition"><input type="radio" name="con" value="20" id="cat_condition" />Mass Communication (DUH)</label>
+
+<h2>What was Texas State's first building ever?</h2>
+<label for="if_string"><input type="radio" name="ifstate" value="0" id="if_string" />Centennial Hall</label>
+<label for="if_join"><input type="radio" name="ifstate" value="20" id="if_join" />Old Main</label>
+<label for="if_info"><input type="radio" name="ifstate" value="0" id="if_info" />Derrick Hall</label>
+<label for="if_condition"><input type="radio" name="ifstate"  value="0" id="if_condition" />Roy F. Mitte</label>
+    
+<h2>In 1964 the Texas State Bobcat was given an offical name by Beth Greenlees, what is it?</h2>
+<label for="abc_string"><input type="radio" name="abc" value="0" id="abc_string" />Bobby the Bobcat</label>
+<label for="abc_join"><input type="radio" name="abc" value="0" id="abc_join" />Bo the Bobcat</label>
+<label for="abc_info"><input type="radio" name="abc" value="20" id="abc_info" />Boko the Bobcat</label>
+<label for="abc_condition"><input type="radio" name="abc" value="0" id="cat_condition" />Buzz the Bobcat</label>
+
+
+<button type="submit" value="Submit">Submit</button>
+
+</form>
+
+<p>Your grade is: <span id="grade">__</span></p>
+<p id="grade2"></p>
+</div><!-- close main div -->
+  
+<script>
+// add script here to make quiz interactive
+  document.getElementById("form1").onsubmit=function() {
+    
+     variable = parseInt(document.querySelector('input[name = "variable"]:checked').value);
+	   sub = parseInt(document.querySelector('input[name = "sub"]:checked').value);
+	   con = parseInt(document.querySelector('input[name = "con"]:checked').value);
+	   ifstate = parseInt(document.querySelector('input[name = "ifstate"]:checked').value);
+      abc =
+        parseInt(document.querySelector('input[name = "abc"]:checked').value);
+    
+	   result = variable + sub + con + ifstate + abc; 
+    
+     grading = [
+	   {score:0,feedback:"Looks like you're at the wrong school buddy.", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Fyikes.gif?v=1570204481771"},
+	   {score:20,feedback:"Ouch!", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Fheck.jpg?v=1570207391219"},
+	   {score:40,feedback:"Are you sure you're a bobcat?", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Fquestionmark.jpg?v=1570204820574"},
+        {score:60,feedback:"Ummm... Try again. ", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Ftry.jpeg?v=1570204676662"},
+	   {score:80,feedback:"You were so close!", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Fsoclose.jpg?v=1570204919859"},
+	   {score:100,feedback:"Amazing! Go bobcats go!", image: "https://cdn.glitch.com/43688991-1521-4ab6-b40e-4fbf4f855786%2Fyas.jpg?v=1570205024477"}
+	   ];
+	  
+for(i=0; i<grading.length; i++) {
+    if(result == grading[i].score) {
+    result2 = grading[i].feedback + "<br /><img src='" + grading[i].image + "' width='300'  />";
+	  }
+	  }
+    
+     document.getElementById("grade").innerHTML = result;
+    document.getElementById("grade2").innerHTML = result2; 
+	   
+
+return false; // required to not refresh the page; just leave this here
+  }
+
+
+</script>
+</body>
+</html>
